@@ -1,19 +1,19 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useReducer, useState } from 'react'
 import {
-    UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
-  } from '@ant-design/icons';
-import { Layout,Menu } from 'antd';
+  UserOutlined,
+  VideoCameraOutlined,
+  UploadOutlined,
+} from '@ant-design/icons';
+import { Layout, Menu } from 'antd';
 const { Sider } = Layout;
 
-export const SiderBar:FC = () => {
-   const [collapsed, setcollapsed] = useState<boolean>(true)
-    return (
-        <div>
-        <Layout>
-        <Sider trigger={null} collapsible collapsed={collapsed}>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+export const SiderBar: FC = () => {
+
+  return (
+    <div>
+      <Layout>
+        <Sider trigger={null} collapsible>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1" icon={<UserOutlined />}>
               nav 1
             </Menu.Item>
@@ -25,7 +25,8 @@ export const SiderBar:FC = () => {
             </Menu.Item>
           </Menu>
         </Sider>
-        </Layout>
-        </div>
-    )
+      </Layout>
+
+    </div>
+  )
 }
