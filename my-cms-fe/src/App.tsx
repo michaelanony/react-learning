@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
-import { SiderBar } from "./components/SiderBar";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { createUserLogin, createUserLogout } from "./store/actions/userAcitonCreators";
+import { createUserLogin } from "./store/actions/userAcitonCreators";
 import { apiCheckLogin } from "./api/services"
 import LoginPage from "./pages/Login"
 import IndexPage from "./pages/Index"
+import SagaLearning from './pages/SagaLearning'
 function App() {
   const dispatch = useDispatch()
   useEffect(() => {
@@ -19,12 +17,13 @@ function App() {
     })
   })
   const isLogin = useSelector((state: any) => state.userReducer.isLogin)
-  if (isLogin) {
+  if (!isLogin) {
     return (
       <div className="App">
         <Switch>
           <Route path="/index" component={IndexPage} />
-          <Redirect to="/index" />
+          <Route path="/saga" component={SagaLearning}/>
+          <Redirect to="/saga" />
         </Switch>
       </div>
     );

@@ -6,7 +6,7 @@ interface UserState {
 }
 interface UserAction {
     type: string,
-    payload: string
+    payload: UserState
 }
 const initialState: UserState = {
     userName: "",
@@ -18,7 +18,7 @@ export default (state = initialState, action: UserAction): UserState => {
     switch (action.type) {
         case UserActionTypes.USERLOGININ:
             return {
-                userName: action.payload,
+                userName: action.payload.userName,
                 isLogin: true
             }
         case UserActionTypes.USERLOGOUT:

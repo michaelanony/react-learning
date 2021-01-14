@@ -1,4 +1,4 @@
 import { combineReducers } from "redux";
 import userReducer from "./userReducers"
-
-export default combineReducers({ userReducer });
+import defReducer from "./sagaReducer"
+export default combineReducers({ userReducer,defReducer });
