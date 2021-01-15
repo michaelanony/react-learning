@@ -1,7 +1,7 @@
-import React, { RefObject, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { apiUserLogin } from "../../api/services";
 import { createUserLogin } from "../../store/actions/userAcitonCreators"
+import LoginForm from "../../components/LoginForm/LoginForm"
 const LoginPage = () => {
     const userName = useRef<HTMLInputElement>(null)
     const password = useRef<HTMLInputElement>(null)
@@ -24,6 +24,7 @@ const LoginPage = () => {
     }
     return (
         <div>
+            <LoginForm />
             <input type="text" ref={userName} placeholder="username" />
             <input type="text" ref={password} placeholder="password" />
             <button onClick={logNow}>login</button>
