@@ -10,13 +10,13 @@ export const apiCheckLogin = async (): Promise<UserResp> => {
         return res.data
     })
 }
-export const apiUserLogin = async (): Promise<UserResp> => {
+export const apiUserLogin = async (user: string, pwd: string): Promise<UserResp> => {
     return axios({
         url: REACT_APP_API_HOST + `/v1/user/login`,
         method: "POST",
         data: {
-            user: "test",
-            pwd: "test",
+            user: user,
+            pwd: pwd,
         },
     }).then(res => {
         return res.data

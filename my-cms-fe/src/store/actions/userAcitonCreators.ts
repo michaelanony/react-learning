@@ -3,7 +3,12 @@ import { UserActionTypes } from "./actionTypes";
 import { apiCheckLogin } from "../../api/services"
 
 
-const createUserLogin = (user: string) => ({ type: UserActionTypes.USERLOGININ, payload: user })
+const createUserLogin = (user: string, pwd: string) => ({
+    type: UserActionTypes.USERLOGININ, payload: {
+        user: user,
+        pwd: pwd
+    }
+})
 const createUserLogout = () => ({ type: UserActionTypes.USERLOGININ })
 // const createCheckUserLogin = (): UserState => {
 //     apiCheckLogin().then(res => {

@@ -8,21 +8,13 @@ import LoginPage from "./pages/Login"
 import IndexPage from "./pages/Index"
 import SagaLearning from './pages/SagaLearning'
 function App() {
-  const dispatch = useDispatch()
-  useEffect(() => {
-    apiCheckLogin().then(res => {
-      if (res.code == 200 && res.data?.user) {
-        dispatch(createUserLogin(res.data.user))
-      }
-    })
-  })
   const isLogin = useSelector((state: any) => state.userReducer.isLogin)
-  if (!isLogin) {
+  if (isLogin) {
     return (
       <div className="App">
         <Switch>
           <Route path="/index" component={IndexPage} />
-          <Route path="/saga" component={SagaLearning}/>
+          <Route path="/saga" component={SagaLearning} />
           <Redirect to="/saga" />
         </Switch>
       </div>

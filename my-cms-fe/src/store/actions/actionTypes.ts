@@ -1,4 +1,6 @@
 export enum UserActionTypes {
     USERLOGININ = 'user_login',
-    USERLOGOUT = 'user_logout'
+    USERLOGINSUCCESS = 'user_login_success',
+    USERLOGOUT = 'user_logout',
+    USERLOGINFAILED = 'user_login_failed'
 }

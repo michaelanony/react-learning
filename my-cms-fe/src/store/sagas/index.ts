@@ -1,13 +1,8 @@
-import {takeEvery,takeLatest,throttle} from "redux-saga/effects"
-import axios from 'axios'
-export function* defsage(){
-    yield takeEvery('takeEvery',function*(){
-        console.log('takeEvery')
-    })
-    yield takeLatest('takeLatest',function*(){
-        console.log('takeLatest')
-    })
-    yield throttle(0,'throttle',function*(){
-        console.log('throttle')
-    })
+import { all } from "redux-saga/effects"
+import { loginSaga } from "./loginSaga"
+import { sagaLearning } from "./sagaLearning"
+
+
+export function* defSaga() {
+    yield all([loginSaga(), sagaLearning()])
 }

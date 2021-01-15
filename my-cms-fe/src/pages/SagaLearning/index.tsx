@@ -3,27 +3,36 @@ import { useDispatch } from "react-redux";
 const SagaLearning = () => {
     const dispatch = useDispatch()
 
-    const sendtakeEvery=()=>{
+    const sendtakeEvery = () => {
         dispatch({
-            type:"takeEvery",
-            payload:{
-                user
+            type: "takeEvery",
+            payload: {
+                user: "1",
+                pwd: "1"
             }
         })
     }
-    const sendtakeLatest=()=>{
+    const sendtakeLatest = () => {
         dispatch({
-            type:"takeLatest",
-            payload:{
-                userName:"213"
+            type: "takeLatest",
+            payload: {
+                userName: "213"
             }
         })
     }
-    const sendThrottle=()=>{
+    const sendThrottle = () => {
         dispatch({
-            type:"throttle",
-            payload:{
-                userName:"213"
+            type: "throttle",
+            payload: {
+                userName: "213"
+            }
+        })
+    }
+    const sendTake = () => {
+        dispatch({
+            type: "take",
+            payload: {
+                userName: "213"
             }
         })
     }
@@ -32,6 +41,7 @@ const SagaLearning = () => {
             <button onClick={sendtakeEvery}>send takeEvery</button>
             <button onClick={sendtakeLatest}>send takeLatest</button>
             <button onClick={sendThrottle}>send Throttle</button>
+            <button onClick={sendTake}>send Take</button>
         </div>
     )
 }
