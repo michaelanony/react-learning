@@ -1,26 +1,33 @@
 import React from 'react'
 import "./LoginForm.scss"
+import { apiUserLogin } from "../../api/services";
+import { createUserLogin } from "../../store/actions/userAcitonCreators";
 import { Form, Input, Button, Checkbox } from 'antd';
+import { useDispatch } from 'react-redux';
+interface userFrom{
+    username:string,
+    password:string,
+    remember:boolean
+}
 const LoginForm = () => {
-    const layout = {
-        labelCol: { span: 8 },
-        wrapperCol: { span: 16 },
+    const dispatch = useDispatch()
+    const onFinish = (v: userFrom) => {
+        apiUserLogin(v.username,v.password).then(res=>{
+            if(res.code===200 && res.data){
+                localStorage.setItem("ac-token",res.data.token)
+                dispatch(createUserLogin(res.data.user))
+            }else{
+                alert(res.msg)
+            }
+        })
     };
-    const tailLayout = {
-        wrapperCol: { offset: 8, span: 16 },
-    };
-    const onFinish = (values: any) => {
-        console.log('Success:', values);
-    };
-
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
     };
-
     return (
         <div>
             <Form
-                {...layout}
+
                 name="basic"
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
@@ -42,11 +49,11 @@ const LoginForm = () => {
                     <Input.Password />
                 </Form.Item>
 
-                <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+                <Form.Item name="remember" valuePropName="checked">
                     <Checkbox>Remember me</Checkbox>
                 </Form.Item>
 
-                <Form.Item {...tailLayout}>
+                <Form.Item >
                     <Button type="primary" htmlType="submit">
                         Submit
         </Button>
@@ -56,4 +63,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default LoginForm;

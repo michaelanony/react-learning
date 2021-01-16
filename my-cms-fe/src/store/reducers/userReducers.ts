@@ -16,9 +16,10 @@ const initialState: UserState = {
 }
 
 
-export default (state = initialState, action: UserAction): UserState => {
+export default function userReducer(state = initialState, action: UserAction): UserState {
+    console.log(action)
     switch (action.type) {
-        case UserActionTypes.USERLOGININ:
+        case UserActionTypes.USERLOGINWITHSSO:
             return Object.assign({}, state, action)
         case UserActionTypes.USERLOGINSUCCESS:
             return {
@@ -30,6 +31,7 @@ export default (state = initialState, action: UserAction): UserState => {
         case UserActionTypes.USERLOGOUT:
             return {
                 ...state,
+                userName:"",
                 isLogin: false
             }
         case UserActionTypes.USERLOGINFAILED:
@@ -37,6 +39,7 @@ export default (state = initialState, action: UserAction): UserState => {
                 ...state,
                 status: 1
             }
+
         default:
             return state
     }

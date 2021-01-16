@@ -3,13 +3,18 @@ import { UserActionTypes } from "./actionTypes";
 import { apiCheckLogin } from "../../api/services"
 
 
-const createUserLogin = (user: string, pwd: string) => ({
-    type: UserActionTypes.USERLOGININ, payload: {
-        user: user,
-        pwd: pwd
+const createUserLoginWithSSO = (token:string) => ({
+    type: UserActionTypes.USERLOGINWITHSSO, payload: {
+        token
     }
 })
-const createUserLogout = () => ({ type: UserActionTypes.USERLOGININ })
+const createUserLogin=(user:string)=>({
+    type:UserActionTypes.USERLOGINSUCCESS,
+    payload:{
+        userName:user
+    }
+})
+const createUserClean = () => ({ type: UserActionTypes.USERCLEAN })
 // const createCheckUserLogin = (): UserState => {
 //     apiCheckLogin().then(res => {
 //         if (res.code == 200) {
@@ -26,7 +31,8 @@ const createUserLogout = () => ({ type: UserActionTypes.USERLOGININ })
 //     })
 // }
 export {
+    createUserLoginWithSSO,
     createUserLogin,
-    createUserLogout,
+    createUserClean,
     // createCheckUserLogin
 }
