@@ -5,7 +5,6 @@ import { UserResp } from "../../types/index"
 export function* loginSaga() {
     yield takeEvery(UserActionTypes.USERLOGINWITHSSO, function* () {
         const token = yield select(state => state.userReducer.payload.token)
-        console.log(1223)
         const res:UserResp =  yield call(apiCheckLogin,token)
         if (res.code === 200) {
             yield put({
